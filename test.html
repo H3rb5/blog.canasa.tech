@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Report: Modern UX/UI Design Practices</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #0a0e13;
+            color: #e8edf4;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Network pattern background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 171, 228, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 171, 228, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 171, 228, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 19, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(30, 42, 53, 0.5);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #00abe4;
+        }
+
+        /* User profile section */
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .profile-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #1e2a35;
+            border: 1px solid #00abe4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00abe4;
+            font-size: 0.8rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(0, 171, 228, 0.1) 0%, transparent 70%);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #9ca3af;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Navigation */
+        .nav-section {
+            background: rgba(10, 14, 19, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(30, 42, 53, 0.5);
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 0 15px rgba(0, 171, 228, 0.2);
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-links-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            height: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: #9ca3af;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #00abe4;
+            background: rgba(0, 171, 228, 0.1);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .card {
+            background: #152028;
+            border: 1px solid #00abe4;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 15px rgba(0, 171, 228, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 171, 228, 0.3);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .card p {
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+
+        /* UCD Stages */
+        .ucd-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ucd-stage {
+            background: #1e2a35;
+            border: 1px solid #00abe4;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .ucd-stage:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 171, 228, 0.3);
+            background: rgba(0, 171, 228, 0.1);
+        }
+
+        .ucd-stage .emoji {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ucd-stage h4 {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .ucd-content {
+            background: #1e2a35;
+            border: 1px solid rgba(30, 42, 53, 0.5);
+            border-radius: 8px;
+            padding: 1.5rem;
+            min-height: 150px;
+        }
+
+        .ucd-details {
+            display: none;
+        }
+
+        .ucd-details.active {
+            display: block;
+        }
+
+        .ucd-details h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .ucd-details p {
+            color: #9ca3af;
+        }
+
+        .ucd-placeholder {
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            height: 400px;
+            background: #1e2a35;
+            border: 1px solid rgba(30, 42, 53, 0.5);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        /* Tab Buttons */
+        .tab-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            background: #1e2a35;
+            border: 1px solid #00abe4;
+            border-radius: 6px;
+            color: #9ca3af;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button:hover {
+            background: rgba(0, 171, 228, 0.1);
+            color: #00abe4;
+        }
+
+        .tab-button.active {
+            background: #00abe4;
+            color: #ffffff;
+        }
+
+        /* System Details */
+        .system-details {
+            display: none;
+        }
+
+        .system-details.active {
+            display: block;
+        }
+
+        .system-details h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .system-details p {
+            color: #9ca3af;
+            margin-bottom: 1rem;
+        }
+
+        .system-details ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+            color: #9ca3af;
+        }
+
+        .system-details li {
+            margin-bottom: 0.5rem;
+        }
+
+        .system-details strong {
+            color: #ffffff;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-2-wide {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-2-wide .card:last-child {
+            grid-column: 1 / -1;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: rgba(0, 171, 228, 0.1);
+            border: 1px solid #00abe4;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+            color: #9ca3af;
+        }
+
+        .highlight-box li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box strong {
+            color: #ffffff;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0e13;
+            border-top: 1px solid #1e2a35;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: #00abe4;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav {
+                padding: 0 1rem;
+            }
+            
+            .nav-links-section {
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .ucd-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tab-buttons {
+                flex-direction: column;
+            }
+            
+            .grid-2, .grid-2-wide {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">Knowledge Canvas</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#articles">Articles</a></li>
+                <li><a href="index.html#categories">Categories</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <div class="user-section">
+                <div class="profile-icon">👤</div>
+                <span>Sign in</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>A Strategic Guide to Modern UX/UI</h1>
+        <p class="hero-subtitle">An interactive exploration of foundational principles and contemporary design practices.</p>
+    </section>
+
+    <div class="container">
+        
+        <!-- Navigation -->
+        <nav class="nav-section">
+            <div class="nav-container">
+                <div class="nav-links-section">
+                    <a class="nav-link" data-target="pillars">Core Pillars</a>
+                    <a class="nav-link" data-target="visuals">Visual Appeal</a>
+                    <a class="nav-link" data-target="systems">Design Systems</a>
+                    <a class="nav-link" data-target="strategy">Strategy & Cases</a>
+                </div>
+            </div>
+        </nav>
+
+        <main id="main-content">
+            
+            <section id="pillars" class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">The Core Pillars of Modern Design</h2>
+                    <p class="section-subtitle">These foundational principles are the bedrock of any successful digital product, focusing on creating intuitive, trustworthy, and inclusive experiences.</p>
+                </div>
+
+                <div class="card">
+                    <h3>1. The User-Centered Design (UCD) Process</h3>
+                    <p>Modern design begins with empathy. The UCD process is an iterative framework that ensures the final product solves real problems for its users. Click on each stage to learn more about the key activities involved.</p>
+                    
+                    <div class="ucd-grid">
+                        <div class="ucd-stage" data-content="ucd-empathize">
+                            <div class="emoji">🤝</div>
+                            <h4>Empathize</h4>
+                        </div>
+                        <div class="ucd-stage" data-content="ucd-define">
+                            <div class="emoji">🎯</div>
+                            <h4>Define</h4>
+                        </div>
+                        <div class="ucd-stage" data-content="ucd-ideate">
+                            <div class="emoji">💡</div>
+                            <h4>Ideate</h4>
+                        </div>
+                        <div class="ucd-stage" data-content="ucd-prototype">
+                            <div class="emoji">🛠️</div>
+                            <h4>Prototype</h4>
+                        </div>
+                        <div class="ucd-stage" data-content="ucd-test">
+                            <div class="emoji">🧪</div>
+                            <h4>Test</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="ucd-content">
+                        <div id="ucd-empathize" class="ucd-details">
+                            <h5>Empathize & Research</h5>
+                            <p>Conduct deep investigative work through methods like user interviews, surveys, and contextual inquiries to understand user needs, behaviors, and pain points. This research is consolidated into personas to guide design decisions.</p>
+                        </div>
+                        <div id="ucd-define" class="ucd-details">
+                            <h5>Define & Analyze</h5>
+                            <p>Synthesize the research from the empathize stage to form a clear problem statement. This stage is about identifying the core user needs and business goals that the design must address.</p>
+                        </div>
+                        <div id="ucd-ideate" class="ucd-details">
+                            <h5>Ideate & Brainstorm</h5>
+                            <p>Transition from problem identification to creative solution-finding. This is a judgment-free zone for brainstorming a wide range of ideas through sketching, wireframing, and mapping out potential user flows.</p>
+                        </div>
+                        <div id="ucd-prototype" class="ucd-details">
+                            <h5>Prototype</h5>
+                            <p>Create functional mockups or interactive simulations of the product. Prototypes can range from low-fidelity paper sketches to high-fidelity digital models, allowing the team to visualize and interact with the solution before development.</p>
+                        </div>
+                        <div id="ucd-test" class="ucd-details">
+                            <h5>Test & Iterate</h5>
+                            <p>Test the prototypes with real users to gather feedback and identify usability issues. This critical step prevents assumptions from driving the final product and feeds insights back into the iterative cycle for continuous refinement.</p>
+                        </div>
+                        <p id="ucd-placeholder" class="ucd-placeholder">Select a stage to see its description.</p>
+                    </div>
+                </div>
+
+                <div class="grid-2-wide">
+                    <div class="card">
+                        <h3>2. Clarity & Simplicity</h3>
+                        <p>A core principle aimed at reducing cognitive load. By stripping away unnecessary elements and organizing content logically through strong Information Architecture (IA), we create intuitive experiences that help users achieve their goals without frustration. This includes clear navigation and a strong visual hierarchy.</p>
+                    </div>
+                    <div class="card">
+                        <h3>3. Consistency & Feedback</h3>
+                        <p>These principles build user trust. Consistency in visual design and functionality creates a predictable and easy-to-learn interface. Feedback, through visual cues or micro-interactions, confirms user actions and makes the application feel responsive and reliable.</p>
+                    </div>
+                    <div class="card">
+                        <h3>4. Designing for All: The Inclusive Imperative</h3>
+                        <p>Modern design must be accessible to as many people as possible. This involves adhering to WCAG guidelines for color contrast, keyboard navigation, and responsive design. Inclusive design is not a constraint but a catalyst for innovation, leading to more robust and universally usable products.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="visuals" class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">The Art and Science of Visual Appeal</h2>
+                    <p class="section-subtitle">Explore how modern aesthetics, motion, and interaction trends are used to create engaging and memorable user interfaces.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Comparative Analysis of Contemporary UI Trends</h3>
+                    <p>UI trends evolve, each with unique aesthetics and usability considerations. This chart compares popular styles based on their visual appeal and potential accessibility challenges. Use the buttons to see how they stack up.</p>
+                    <div class="chart-container">
+                        <canvas id="uiTrendsChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="systems" class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">The Power of Design Systems</h2>
+                    <p class="section-subtitle">A design system is a single source of truth that unifies product teams, ensuring consistency and efficiency at scale.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Core Principles of Leading Design Systems</h3>
+                    <p>Explore the philosophies of design systems from industry leaders. Click a tab to see how each company approaches its unified design language.</p>
+                    
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-button" data-target="system-google">Google Material</button>
+                            <button class="tab-button" data-target="system-spotify">Spotify GLUE</button>
+                            <button class="tab-button" data-target="system-airbnb">Airbnb DLS</button>
+                        </div>
+                    </div>
+
+                    <div class="ucd-content">
+                        <div id="system-google" class="system-details">
+                            <h4>Google Material Design</h4>
+                            <p><strong>Core Philosophy:</strong> Material is the metaphor.</p>
+                            <ul>
+                                <li><strong>Bold, graphic, intentional:</strong> Uses print design methods (typography, grids, color) to create hierarchy and focus.</li>
+                                <li><strong>Motion provides meaning:</strong> Animation focuses attention and maintains continuity through seamless transitions.</li>
+                                <li><strong>Practical Application:</strong> A system of elevation and shadows creates depth. Provides a vast library of reusable components with built-in states for Android, iOS, and web.</li>
+                            </ul>
+                        </div>
+                        <div id="system-spotify" class="system-details">
+                            <h4>Spotify's GLUE (Global Language for a Unified Experience)</h4>
+                            <p><strong>Core Philosophy:</strong> Unified, Relevant, and Human.</p>
+                            <ul>
+                                <li><strong>Unified:</strong> Everything looks and feels reassuringly Spotify, building familiarity and trust across all platforms.</li>
+                                <li><strong>Relevant:</strong> The product feels personalized, presenting the right information at the right time.</li>
+                                <li><strong>Human:</strong> Rooted in technology but focused on people, creating dynamic and intuitive experiences.</li>
+                            </ul>
+                        </div>
+                        <div id="system-airbnb" class="system-details">
+                            <h4>Airbnb's DLS (Design Language System)</h4>
+                            <p><strong>Core Philosophy:</strong> Unified, universal, conversational, and iconic.</p>
+                            <ul>
+                                <li><strong>Enhanced consistency:</strong> A cohesive interface across all platforms and devices.</li>
+                                <li><strong>Accelerated development:</strong> Reusable components and clear guidelines speed up the design and build process.</li>
+                                <li><strong>Improved accessibility:</strong> Prioritizes inclusivity from the outset with a mobile-first approach.</li>
+                            </ul>
+                        </div>
+                        <p id="system-placeholder" class="ucd-placeholder">Select a design system to see its principles.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="strategy" class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Strategy & Case Studies</h2>
+                    <p class="section-subtitle">Learn from industry leaders and see how foundational principles are applied to solve real-world challenges and drive business success.</p>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="card">
+                        <h3>Case Study: Airbnb</h3>
+                        <p>Airbnb's success is a masterclass in building trust through design. By prioritizing features like verified reviews, secure payments, and high-quality visuals, they address the core user anxiety of staying in a stranger's home. Their "storytelling UI" and mobile-first approach create an emotional connection and a seamless booking experience, all scaled globally through their robust Design Language System (DLS).</p>
+                    </div>
+                    <div class="card">
+                        <h3>Case Study: Spotify</h3>
+                        <p>Spotify excels at balancing a consistent, unified brand experience with deep personalization. Its design system (GLUE) ensures a familiar interface across all devices, characterized by its signature dark theme and green accents. This consistency builds trust, while its powerful recommendation algorithms deliver a highly personal "Relevant" and "Human" experience, making each user feel the product is uniquely theirs.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Case Study: The Netflix Challenge</h3>
+                        <p>A conceptual case study on Netflix tackles the "paradox of choice"—the user frustration of endless browsing. The proposed solution wasn't a complete redesign but a targeted, non-disruptive "Inspire" feature. This advanced search tool used progressive disclosure to help users narrow their choices, demonstrating that a small, well-researched UI change can have a massive positive impact on the UX by solving a specific pain point.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h3>Strategic Recommendations</h3>
+                        <ul>
+                            <li><strong>Start with Empathy, Not Aesthetics:</strong> Always begin with user research to solve real problems.</li>
+                            <li><strong>Unify the Experience:</strong> Invest in a design system to ensure consistency and efficiency.</li>
+                            <li><strong>Leverage Motion Purposefully:</strong> Use animation for feedback and engagement, not just decoration.</li>
+                            <li><strong>Embrace Inclusivity as Innovation:</strong> Design for accessibility from the start to create better products for everyone.</li>
+                            <li><strong>Build a Continuous Feedback Loop:</strong> Use data and user testing to constantly refine and improve the experience.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#articles">Articles</a>
+                <a href="index.html#categories">Categories</a>
+                <a href="index.html#about">About</a>
+            </div>
+            <p style="color: #9ca3af;">&copy; 2025 Canasa Technology. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+            const ucdStages = document.querySelectorAll('.ucd-stage');
+            const ucdDetails = document.querySelectorAll('.ucd-details');
+            const ucdPlaceholder = document.getElementById('ucd-placeholder');
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const systemDetails = document.querySelectorAll('.system-details');
+            const systemPlaceholder = document.getElementById('system-placeholder');
+
+            function showSection(targetId) {
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.dataset.target === targetId);
+                });
+                contentSections.forEach(section => {
+                    section.classList.toggle('active', section.id === targetId);
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    showSection(link.dataset.target);
+                });
+            });
+
+            showSection('pillars');
+
+            ucdStages.forEach(stage => {
+                stage.addEventListener('click', () => {
+                    const contentId = stage.dataset.content;
+                    ucdPlaceholder.classList.add('hidden');
+                    ucdDetails.forEach(detail => {
+                        detail.classList.toggle('active', detail.id === contentId);
+                    });
+                });
+            });
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target;
+                    
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    systemPlaceholder.classList.add('hidden');
+                    systemDetails.forEach(detail => {
+                        detail.classList.toggle('active', detail.id === targetId);
+                    });
+                });
+            });
+
+            // Chart.js configuration with dark theme colors
+            const uiTrendsData = {
+                labels: ['Glassmorphism', 'Neumorphism', 'Evolved Minimalism', 'Bold Colors', '3D Graphics'],
+                datasets: [
+                    {
+                        label: 'Aesthetic Appeal',
+                        data: [8, 6, 9, 8, 10],
+                        backgroundColor: 'rgba(0, 171, 228, 0.6)',
+                        borderColor: 'rgba(0, 171, 228, 1)',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Usability/Accessibility Score',
+                        data: [5, 3, 9, 7, 8],
+                        backgroundColor: 'rgba(251, 191, 36, 0.6)',
+                        borderColor: 'rgba(251, 191, 36, 1)',
+                        borderWidth: 2
+                    }
+                ]
+            };
+
+            const uiTrendsConfig = {
+                type: 'bar',
+                data: uiTrendsData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10,
+                            title: {
+                                display: true,
+                                text: 'Score (out of 10)',
+                                color: '#e8edf4'
+                            },
+                            grid: {
+                                color: 'rgba(30, 42, 53, 0.5)'
+                            },
+                            ticks: {
+                                color: '#9ca3af'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(30, 42, 53, 0.5)'
+                            },
+                            ticks: {
+                                color: '#9ca3af'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'UI Trend Comparison',
+                            font: {
+                                size: 18,
+                                color: '#ffffff'
+                            }
+                        },
+                        legend: {
+                            labels: {
+                                color: '#e8edf4'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#152028',
+                            titleColor: '#ffffff',
+                            bodyColor: '#9ca3af',
+                            borderColor: '#00abe4',
+                            borderWidth: 1,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y;
+                                        if (context.dataset.label === 'Usability/Accessibility Score') {
+                                            if(context.parsed.y <= 4) label += ' (Low - potential issues)';
+                                            else if(context.parsed.y <= 7) label += ' (Medium - use with care)';
+                                            else label += ' (High - generally safe)';
+                                        }
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const ctx = document.getElementById('uiTrendsChart');
+            if(ctx) {
+                new Chart(ctx, uiTrendsConfig);
+            }
+        });
+    </script>
+</body>
+</html>
