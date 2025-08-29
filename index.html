@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knowledge Canvas - Sharpen your thinking</title>
+    <link rel="stylesheet" href="assets/css/mobile-optimized.css">
     <style>
         * {
             margin: 0;
@@ -131,6 +132,13 @@
             font-size: 0.8rem;
         }
 
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
         /* Hero Section */
         .hero {
             padding: 8rem 2rem 4rem;
@@ -155,90 +163,93 @@
             margin-right: auto;
         }
 
-        .search-bar {
-            max-width: 500px;
-            margin: 0 auto 3rem;
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Search Bar */
+        .search-section {
+            margin-bottom: 3rem;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
             position: relative;
         }
 
         .search-input {
             width: 100%;
-            padding: 1rem 1.5rem 1rem 3rem;
-            border: 1px solid #1e2a35;
-            border-radius: 8px;
+            padding: 1rem 1rem 1rem 3rem;
             background: #152028;
-            color: #e8edf4;
+            border: 1px solid #00abe4;
+            border-radius: 8px;
+            color: #ffffff;
             font-size: 1rem;
-            transition: all 0.2s;
         }
 
-        .search-input:focus {
-            outline: none;
-            border-color: #00abe4;
-            box-shadow: 0 0 0 3px rgba(0, 171, 228, 0.1);
+        .search-input::placeholder {
+            color: #9ca3af;
         }
 
-        .search-bar::before {
-            content: '🔍';
+        .search-icon {
             position: absolute;
             left: 1rem;
             top: 50%;
             transform: translateY(-50%);
             color: #9ca3af;
-            z-index: 1;
         }
 
-        /* Blog Container */
-        .blog-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem 4rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: #ffffff;
-        }
-
-        /* Categories */
-        .categories {
+        /* Category Buttons */
+        .category-buttons {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
             gap: 1rem;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
         }
 
         .category-btn {
             padding: 0.75rem 1.5rem;
-            background: transparent;
+            background: #1e2a35;
             border: 1px solid #00abe4;
-            border-radius: 25px;
-            color: #ffffff;
-            text-decoration: none;
+            border-radius: 6px;
+            color: #9ca3af;
             font-weight: 500;
-            transition: all 0.2s;
-            box-shadow: 0 0 10px rgba(0, 171, 228, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .category-btn:hover {
-            background: rgba(0, 171, 228, 0.1);
-            box-shadow: 0 0 15px rgba(0, 171, 228, 0.3);
-        }
-
+        .category-btn:hover,
         .category-btn.active {
             background: #00abe4;
-            color: white;
-            box-shadow: 0 0 20px rgba(0, 171, 228, 0.4);
+            color: #ffffff;
         }
 
         /* Blog Grid */
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 4rem;
         }
@@ -247,139 +258,112 @@
             background: #152028;
             border: 1px solid #00abe4;
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 2rem;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(0, 171, 228, 0.2);
-        }
-
-        .blog-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(0, 171, 228, 0.05), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .blog-card:hover::before {
-            opacity: 1;
         }
 
         .blog-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(0, 171, 228, 0.3);
         }
 
         .blog-meta {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            gap: 1rem;
             margin-bottom: 1rem;
             font-size: 0.9rem;
-        }
-
-        .blog-date {
             color: #9ca3af;
-            font-size: 0.8rem;
         }
 
         .blog-tag {
-            background: #00abe4;
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
+            background: rgba(0, 171, 228, 0.1);
+            color: #00abe4;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
             font-size: 0.8rem;
-            font-weight: 500;
         }
 
         .blog-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
             color: #ffffff;
         }
 
         .blog-excerpt {
             color: #9ca3af;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             line-height: 1.6;
         }
 
         .read-more {
             color: #00abe4;
             text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-weight: 500;
             transition: color 0.2s;
         }
 
         .read-more:hover {
-            color: #178582;
+            color: #ffffff;
         }
 
-        /* Newsletter Section */
+        /* Newsletter */
         .newsletter {
             background: #152028;
             border: 1px solid #00abe4;
             border-radius: 12px;
-            padding: 2rem;
+            padding: 3rem;
             text-align: center;
-            margin: 2rem 0;
-            box-shadow: 0 0 15px rgba(0, 171, 228, 0.2);
+            margin-bottom: 4rem;
         }
 
         .newsletter h3 {
+            font-size: 2rem;
+            font-weight: 700;
             margin-bottom: 1rem;
             color: #ffffff;
-            font-size: 1.5rem;
         }
 
         .newsletter p {
             color: #9ca3af;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
 
         .newsletter-form {
             display: flex;
             gap: 1rem;
-            max-width: 400px;
+            max-width: 500px;
             margin: 0 auto;
         }
 
         .newsletter-input {
             flex: 1;
-            padding: 0.75rem;
-            border: 1px solid #1e2a35;
+            padding: 1rem;
+            background: #1e2a35;
+            border: 1px solid rgba(30, 42, 53, 0.5);
             border-radius: 6px;
-            background: #0a0e13;
-            color: #e8edf4;
+            color: #ffffff;
+            font-size: 1rem;
         }
 
-        .newsletter-input:focus {
-            outline: none;
-            border-color: #00abe4;
+        .newsletter-input::placeholder {
+            color: #9ca3af;
         }
 
         .newsletter-btn {
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 2rem;
             background: #00abe4;
-            color: white;
             border: none;
             border-radius: 6px;
+            color: #ffffff;
             font-weight: 600;
             cursor: pointer;
             transition: background 0.2s;
         }
 
         .newsletter-btn:hover {
-            background: #178582;
+            background: #0095c7;
         }
 
         /* Footer */
@@ -411,124 +395,6 @@
 
         .footer-links a:hover {
             color: #00abe4;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .nav {
-                padding: 0 1rem;
-            }
-            
-            .mobile-menu-toggle {
-                display: flex;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(10, 14, 19, 0.98);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                padding: 2rem;
-                transform: translateY(-100%);
-                transition: transform 0.3s ease;
-                z-index: 999;
-                gap: 0;
-            }
-            
-            .nav-links.active {
-                transform: translateY(0);
-            }
-            
-            .nav-links li {
-                margin: 1rem 0;
-            }
-            
-            .nav-links a {
-                font-size: 1.2rem;
-                padding: 1rem;
-                display: block;
-                text-align: center;
-                min-height: 44px;
-                min-width: 44px;
-            }
-            
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .newsletter-form {
-                flex-direction: column;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .user-section span {
-                display: none;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .nav {
-                padding: 0 0.5rem;
-            }
-            
-            .card {
-                padding: 1.5rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .category-btn {
-                padding: 1rem 1.5rem;
-                font-size: 1rem;
-                min-height: 44px;
-            }
-            
-            .read-more {
-                padding: 0.75rem 1rem;
-                font-size: 1rem;
-                min-height: 44px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .hero h1 {
-                font-size: 1.6rem;
-            }
-            
-            .card {
-                padding: 1rem;
-            }
-            
-            .nav-links a {
-                font-size: 1.1rem;
-                padding: 0.75rem;
-            }
         }
 
         /* Animation */
@@ -580,22 +446,27 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <h1>Sharpen your thinking</h1>
-        <p class="hero-subtitle">Explore ideas, connect concepts, and build your knowledge through thoughtful articles and insights.</p>
-        <div class="search-bar">
-            <input type="text" class="search-input" placeholder="Search articles, topics or ideas..." id="searchInput">
-        </div>
+        <h1>Sharpen Your Thinking</h1>
+        <p class="hero-subtitle">Discover the art of connected thinking and build a knowledge system that transforms how you learn, work, and create.</p>
     </section>
 
-    <!-- Categories -->
-    <div class="blog-container">
-        <div class="categories">
-            <a href="#" class="category-btn active" data-category="all">All Posts</a>
-            <a href="#" class="category-btn" data-category="productivity">Productivity</a>
-            <a href="#" class="category-btn" data-category="technology">Technology</a>
-            <a href="#" class="category-btn" data-category="philosophy">Philosophy</a>
-            <a href="#" class="category-btn" data-category="learning">Learning</a>
-            <a href="#" class="category-btn" data-category="creativity">Creativity</a>
+    <div class="container">
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search articles, topics, or concepts...">
+            </div>
+        </div>
+
+        <!-- Category Buttons -->
+        <div class="category-buttons">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="productivity">Productivity</button>
+            <button class="category-btn" data-category="technology">Technology</button>
+            <button class="category-btn" data-category="philosophy">Philosophy</button>
+            <button class="category-btn" data-category="learning">Learning</button>
+            <button class="category-btn" data-category="creativity">Creativity</button>
         </div>
 
         <!-- Blog Grid -->
@@ -687,6 +558,8 @@
         </div>
     </footer>
 
+    <!-- Mobile Optimized JavaScript -->
+    <script src="assets/js/mobile-optimized.js"></script>
     <script>
         // Category filtering
         const categoryButtons = document.querySelectorAll('.category-btn');
@@ -741,41 +614,6 @@
                 alert('Thank you for subscribing! Welcome to the Knowledge Network.');
                 e.target.reset();
             }
-        });
-
-        // Mobile menu functionality
-        const mobileToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        
-        if (mobileToggle && navLinks) {
-            mobileToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                
-                // Animate hamburger to X
-                const spans = this.querySelectorAll('span');
-                spans.forEach(span => span.classList.toggle('active'));
-            });
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.nav') && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    const spans = mobileToggle.querySelectorAll('span');
-                    spans.forEach(span => span.classList.remove('active'));
-                }
-            });
-        }
-
-        // Improve touch interactions
-        const touchTargets = document.querySelectorAll('.nav-link, .category-btn, .read-more');
-        touchTargets.forEach(target => {
-            target.addEventListener('touchstart', function() {
-                this.style.transform = 'scale(0.95)';
-            });
-            
-            target.addEventListener('touchend', function() {
-                this.style.transform = 'scale(1)';
-            });
         });
 
         // Smooth scrolling for nav links

@@ -1,0 +1,426 @@
+/* Mobile Optimized CSS - Knowledge Canvas */
+/* This file contains all mobile-specific optimizations and fixes */
+
+/* ===== MOBILE NAVIGATION FIXES ===== */
+
+@media (max-width: 768px) {
+    /* Improved mobile menu positioning */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(10, 14, 19, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 6rem 2rem 2rem;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+        gap: 0;
+        justify-content: flex-start;
+        align-items: center;
+        overflow-y: auto;
+    }
+    
+    .nav-links.active {
+        transform: translateX(0);
+    }
+    
+    .nav-links li {
+        margin: 1.5rem 0;
+        width: 100%;
+    }
+    
+    .nav-links a {
+        font-size: 1.3rem;
+        padding: 1.2rem;
+        display: block;
+        text-align: center;
+        min-height: 48px;
+        min-width: 48px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        background: rgba(30, 42, 53, 0.3);
+        border: 1px solid rgba(0, 171, 228, 0.2);
+    }
+    
+    .nav-links a:hover {
+        background: rgba(0, 171, 228, 0.1);
+        transform: translateY(-2px);
+        border-color: #00abe4;
+    }
+    
+    /* Improved mobile menu toggle */
+    .mobile-menu-toggle {
+        display: flex;
+        z-index: 1001;
+        position: relative;
+    }
+    
+    /* Better mobile header */
+    .nav {
+        padding: 0 1rem;
+        position: relative;
+    }
+    
+    /* Hide user section text on mobile */
+    .user-section span {
+        display: none;
+    }
+}
+
+/* ===== MOBILE TYPOGRAPHY & SPACING ===== */
+
+@media (max-width: 768px) {
+    /* Improved hero typography */
+    .hero h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        padding: 0 1rem;
+    }
+    
+    /* Better container spacing */
+    .container {
+        padding: 0 1rem;
+    }
+    
+    /* Improved section titles */
+    .section-title {
+        font-size: 2.2rem;
+        line-height: 1.3;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+        line-height: 1.6;
+        padding: 0 0.5rem;
+    }
+}
+
+/* ===== MOBILE CONTENT LAYOUT ===== */
+
+@media (max-width: 768px) {
+    /* Improved blog grid */
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0;
+    }
+    
+    .blog-card {
+        padding: 1.5rem;
+        margin-bottom: 0;
+        border-radius: 12px;
+    }
+    
+    .blog-title {
+        font-size: 1.4rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+    }
+    
+    .blog-excerpt {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Better card styling */
+    .card {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 12px;
+    }
+    
+    .card h3 {
+        font-size: 1.3rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+    }
+    
+    .card p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    /* Improved category buttons */
+    .category-buttons {
+        gap: 0.75rem;
+        padding: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .category-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        min-height: 44px;
+        min-width: 44px;
+        border-radius: 8px;
+        margin: 0.25rem;
+    }
+    
+    /* Better newsletter form */
+    .newsletter-form {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0;
+    }
+    
+    .newsletter-input,
+    .newsletter-btn {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+        min-height: 48px;
+        border-radius: 8px;
+    }
+    
+    /* Improved footer */
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .footer-links a {
+        padding: 0.75rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* ===== SMALL MOBILE OPTIMIZATIONS ===== */
+
+@media (max-width: 480px) {
+    /* Refined hero typography */
+    .hero h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+        padding: 0 0.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        line-height: 1.5;
+        padding: 0 1rem;
+    }
+    
+    /* Better container padding */
+    .container {
+        padding: 0 0.75rem;
+    }
+    
+    .nav {
+        padding: 0 0.75rem;
+    }
+    
+    /* Improved card padding */
+    .card {
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .blog-card {
+        padding: 1.25rem;
+    }
+    
+    /* Better section titles */
+    .section-title {
+        font-size: 1.8rem;
+        line-height: 1.3;
+    }
+    
+    /* Improved buttons */
+    .category-btn {
+        padding: 0.75rem 0.875rem;
+        font-size: 0.875rem;
+    }
+    
+    .read-more {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        min-height: 44px;
+    }
+    
+    /* Better newsletter */
+    .newsletter-input,
+    .newsletter-btn {
+        padding: 0.875rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== EXTRA SMALL MOBILE ===== */
+
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .container {
+        padding: 0 0.5rem;
+    }
+    
+    .nav {
+        padding: 0 0.5rem;
+    }
+    
+    .card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .blog-card {
+        padding: 1rem;
+    }
+    
+    .nav-links a {
+        font-size: 1.1rem;
+        padding: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .category-btn {
+        padding: 0.625rem 0.75rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* ===== TOUCH TARGET OPTIMIZATIONS ===== */
+
+@media (max-width: 768px) {
+    /* Ensure all interactive elements meet 44px minimum */
+    .nav-links a,
+    .category-btn,
+    .read-more,
+    .newsletter-btn,
+    .mobile-menu-toggle {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Improve touch feedback */
+    .nav-links a:active,
+    .category-btn:active,
+    .read-more:active,
+    .newsletter-btn:active {
+        transform: scale(0.95);
+        transition: transform 0.1s ease;
+    }
+    
+    /* Better focus states for accessibility */
+    .nav-links a:focus,
+    .category-btn:focus,
+    .read-more:focus,
+    .newsletter-btn:focus,
+    .newsletter-input:focus {
+        outline: 2px solid #00abe4;
+        outline-offset: 2px;
+    }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+@media (max-width: 768px) {
+    /* Reduce animations on mobile for better performance */
+    .blog-card {
+        animation: none;
+    }
+    
+    .card:hover {
+        transform: none;
+    }
+    
+    /* Optimize backdrop-filter for better performance */
+    .nav-links {
+        backdrop-filter: blur(10px);
+    }
+    
+    /* Reduce box-shadow complexity */
+    .card {
+        box-shadow: 0 2px 8px rgba(0, 171, 228, 0.15);
+    }
+}
+
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+
+@media (max-width: 768px) {
+    /* Better color contrast for mobile */
+    .nav-links a {
+        color: #ffffff;
+    }
+    
+    .nav-links a:hover {
+        color: #00abe4;
+    }
+    
+    /* Improved focus indicators */
+    .mobile-menu-toggle:focus {
+        outline: 2px solid #00abe4;
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+    
+    /* Better text readability */
+    .blog-excerpt,
+    .card p {
+        color: #d1d5db;
+    }
+}
+
+/* ===== CONSISTENCY FIXES ===== */
+
+/* Ensure consistent spacing across all pages */
+@media (max-width: 768px) {
+    .content-section {
+        padding: 2rem 0;
+    }
+    
+    .section-header {
+        margin-bottom: 2rem;
+    }
+    
+    .grid-2,
+    .grid-2-wide {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Consistent button styling */
+    .btn,
+    .read-more,
+    .newsletter-btn {
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    /* Consistent card styling */
+    .card,
+    .blog-card,
+    .highlight-box {
+        border-radius: 12px;
+        border: 1px solid rgba(0, 171, 228, 0.2);
+    }
+}
