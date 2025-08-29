@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knowledge Canvas - Sharpen your thinking</title>
+    <title>Knowledge Canvas - Sharpen Your Thinking</title>
     <link rel="stylesheet" href="assets/css/brand.css">
     <link rel="stylesheet" href="assets/css/mobile-optimized.css">
     <style>
@@ -21,7 +21,7 @@
             overflow-x: hidden;
         }
 
-        /* Network pattern background */
+        /* Enhanced network pattern background */
         body::before {
             content: '';
             position: fixed;
@@ -30,9 +30,10 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(circle at 20% 30%, rgba(var(--color-brand-accent-rgb), 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(var(--color-brand-accent-rgb), 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(var(--color-brand-accent-rgb), 0.06) 0%, transparent 50%);
+                radial-gradient(circle at 20% 30%, rgba(var(--color-brand-accent-rgb), 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(var(--color-brand-accent-rgb), 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(var(--color-brand-accent-rgb), 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 60% 20%, rgba(var(--color-brand-accent-rgb), 0.1) 0%, transparent 50%);
             pointer-events: none;
             z-index: -1;
         }
@@ -140,12 +141,16 @@
             padding: 0 var(--space-xl);
         }
 
-        /* Hero Section */
+        /* Enhanced Hero Section */
         .hero {
             padding: var(--space-3xl) var(--space-xl) var(--space-2xl);
             text-align: center;
-            background: radial-gradient(ellipse at center, rgba(var(--color-brand-accent-rgb), 0.1) 0%, transparent 70%);
+            background: radial-gradient(ellipse at center, rgba(var(--color-brand-accent-rgb), 0.12) 0%, transparent 70%);
             position: relative;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .hero h1 {
@@ -153,15 +158,95 @@
             font-weight: var(--font-weight-extrabold);
             margin-bottom: var(--space-md);
             color: var(--color-text-inverse);
+            line-height: 1.1;
         }
 
         .hero-subtitle {
             font-size: var(--font-size-lg);
             color: var(--color-text-secondary);
-            margin-bottom: var(--space-xl);
+            margin-bottom: var(--space-2xl);
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Enhanced Search Bar */
+        .search-section {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: var(--space-lg) var(--space-xl) var(--space-lg) 3rem;
+            background: var(--color-bg-secondary);
+            border: 1px solid rgba(var(--color-brand-accent-rgb), 0.3);
+            border-radius: var(--radius-lg);
+            color: var(--color-text-primary);
+            font-size: var(--font-size-base);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-brand-accent);
+            box-shadow: 0 0 0 3px rgba(var(--color-brand-accent-rgb), 0.1);
+        }
+
+        .search-input::placeholder {
+            color: var(--color-text-muted);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: var(--space-md);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-text-muted);
+            font-size: var(--font-size-lg);
+        }
+
+        /* Enhanced Category Buttons */
+        .category-section {
+            margin-bottom: var(--space-3xl);
+        }
+
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            padding: 0 var(--space-md);
+        }
+
+        .category-btn {
+            padding: var(--space-sm) var(--space-lg);
+            background: transparent;
+            border: 1px solid rgba(var(--color-brand-accent-rgb), 0.3);
+            border-radius: var(--radius-xl);
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: var(--font-weight-medium);
+            font-size: var(--font-size-sm);
+        }
+
+        .category-btn:hover {
+            border-color: var(--color-brand-accent);
+            color: var(--color-text-primary);
+        }
+
+        .category-btn.active {
+            background: var(--color-brand-accent);
+            border-color: var(--color-brand-accent);
+            color: var(--color-text-inverse);
         }
 
         /* Content Sections */
@@ -188,107 +273,74 @@
             margin: 0 auto;
         }
 
-        /* Search Bar */
-        .search-section {
-            margin-bottom: var(--space-2xl);
-        }
-
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: var(--space-md) var(--space-md) var(--space-md) var(--space-2xl);
-            background: var(--color-bg-secondary);
-            border: 1px solid var(--color-brand-accent);
-            border-radius: var(--radius-md);
-            color: var(--color-text-inverse);
-            font-size: var(--font-size-base);
-        }
-
-        .search-input::placeholder {
-            color: var(--color-text-secondary);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: var(--space-md);
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--color-text-secondary);
-        }
-
-        /* Category Buttons */
-        .category-buttons {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-md);
-            margin-bottom: var(--space-2xl);
-            flex-wrap: wrap;
-        }
-
-        .category-btn {
-            padding: var(--space-sm) var(--space-lg);
-            background: var(--color-bg-tertiary);
-            border: 1px solid var(--color-brand-accent);
-            border-radius: var(--radius-sm);
-            color: var(--color-text-secondary);
-            font-weight: var(--font-weight-medium);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .category-btn:hover,
-        .category-btn.active {
-            background: var(--color-brand-accent);
-            color: var(--color-text-inverse);
-        }
-
-        /* Blog Grid */
+        /* Enhanced Blog Grid */
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: var(--space-xl);
-            margin-bottom: var(--space-2xl);
+            margin-bottom: var(--space-3xl);
         }
 
+        /* Enhanced Blog Cards */
         .blog-card {
             background: var(--color-bg-secondary);
-            border: 1px solid var(--color-brand-accent);
+            border: 1px solid rgba(var(--color-brand-accent-rgb), 0.2);
             border-radius: var(--radius-lg);
             padding: var(--space-xl);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-brand-accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .blog-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-4px);
             box-shadow: var(--shadow-lg);
+            border-color: rgba(var(--color-brand-accent-rgb), 0.4);
+        }
+
+        .blog-card:hover::before {
+            opacity: 1;
         }
 
         .blog-meta {
             display: flex;
-            gap: var(--space-md);
+            align-items: center;
+            gap: var(--space-sm);
             margin-bottom: var(--space-md);
             font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
         }
 
-        .blog-tag {
-            background: rgba(var(--color-brand-accent-rgb), 0.1);
-            color: var(--color-brand-accent);
+        .blog-date {
+            color: var(--color-text-muted);
+        }
+
+        .blog-category {
+            background: var(--color-brand-accent);
+            color: var(--color-text-inverse);
             padding: var(--space-xs) var(--space-sm);
-            border-radius: var(--radius-sm);
-            font-size: var(--font-size-sm);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-medium);
         }
 
         .blog-title {
-            font-size: var(--font-size-2xl);
-            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
             margin-bottom: var(--space-md);
             color: var(--color-text-inverse);
+            line-height: 1.3;
         }
 
         .blog-excerpt {
@@ -305,62 +357,87 @@
         }
 
         .read-more:hover {
-            color: var(--color-text-inverse);
+            color: var(--color-brand-accent-hover);
         }
 
-        /* Newsletter */
-        .newsletter {
+        /* Enhanced Newsletter Section */
+        .newsletter-section {
             background: var(--color-bg-secondary);
-            border: 1px solid var(--color-brand-accent);
+            border: 1px solid rgba(var(--color-brand-accent-rgb), 0.2);
             border-radius: var(--radius-lg);
             padding: var(--space-2xl);
             text-align: center;
-            margin-bottom: var(--space-2xl);
+            margin-bottom: var(--space-3xl);
+            position: relative;
+            overflow: hidden;
         }
 
-        .newsletter h3 {
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(var(--color-brand-accent-rgb), 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .newsletter-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-title {
             font-size: var(--font-size-3xl);
             font-weight: var(--font-weight-bold);
             margin-bottom: var(--space-md);
             color: var(--color-text-inverse);
         }
 
-        .newsletter p {
+        .newsletter-description {
             color: var(--color-text-secondary);
             margin-bottom: var(--space-xl);
-            font-size: var(--font-size-lg);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .newsletter-form {
             display: flex;
             gap: var(--space-md);
-            max-width: 500px;
+            max-width: 400px;
             margin: 0 auto;
         }
 
         .newsletter-input {
             flex: 1;
-            padding: var(--space-md);
-            background: var(--color-bg-tertiary);
-            border: 1px solid rgba(var(--color-bg-tertiary-rgb), 0.5);
-            border-radius: var(--radius-sm);
-            color: var(--color-text-inverse);
+            padding: var(--space-md) var(--space-lg);
+            background: var(--color-bg-primary);
+            border: 1px solid rgba(var(--color-text-muted), 0.3);
+            border-radius: var(--radius-md);
+            color: var(--color-text-primary);
             font-size: var(--font-size-base);
         }
 
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--color-brand-accent);
+        }
+
         .newsletter-input::placeholder {
-            color: var(--color-text-secondary);
+            color: var(--color-text-muted);
         }
 
         .newsletter-btn {
             padding: var(--space-md) var(--space-xl);
             background: var(--color-brand-accent);
-            border: none;
-            border-radius: var(--radius-sm);
             color: var(--color-text-inverse);
-            font-weight: var(--font-weight-semibold);
+            border: none;
+            border-radius: var(--radius-md);
             cursor: pointer;
-            transition: background 0.2s;
+            font-weight: var(--font-weight-semibold);
+            transition: background-color 0.2s;
         }
 
         .newsletter-btn:hover {
@@ -398,45 +475,119 @@
             color: var(--color-brand-accent);
         }
 
-        /* Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: var(--font-size-4xl);
             }
-            to {
-                opacity: 1;
+            
+            .nav {
+                padding: 0 1rem;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(var(--color-bg-primary-rgb), 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+                gap: 0;
+            }
+            
+            .nav-links.active {
                 transform: translateY(0);
             }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 1rem;
+                display: block;
+                text-align: center;
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .user-section span {
+                display: none;
+            }
         }
 
-        .blog-card {
-            animation: fadeInUp 0.6s ease-out;
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .hero-subtitle {
+                font-size: var(--font-size-base);
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .nav {
+                padding: 0 0.5rem;
+            }
+            
+            .blog-card {
+                padding: var(--space-lg);
+            }
+            
+            .section-title {
+                font-size: var(--font-size-2xl);
+            }
         }
 
-        .blog-card:nth-child(2) { animation-delay: 0.1s; }
-        .blog-card:nth-child(3) { animation-delay: 0.2s; }
-        .blog-card:nth-child(4) { animation-delay: 0.3s; }
-        .blog-card:nth-child(5) { animation-delay: 0.4s; }
-        .blog-card:nth-child(6) { animation-delay: 0.5s; }
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: var(--font-size-2xl);
+            }
+            
+            .blog-card {
+                padding: var(--space-md);
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <a href="#" class="logo">Knowledge Canvas</a>
+            <a href="index.html" class="logo">Knowledge Canvas</a>
             <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#articles">Articles</a></li>
                 <li><a href="#categories">Categories</a></li>
                 <li><a href="pages/about.html">About</a></li>
-
             </ul>
             <div class="user-section">
                 <div class="profile-icon">👤</div>
@@ -446,114 +597,126 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <h1>Sharpen Your Thinking</h1>
-        <p class="hero-subtitle">Discover the art of connected thinking and build a knowledge system that transforms how you learn, work, and create.</p>
-    </section>
-
-    <div class="container">
-        <!-- Search Section -->
-        <div class="search-section">
-            <div class="search-container">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" class="search-input" placeholder="Search articles, topics, or concepts...">
+    <section class="hero">
+        <div class="container">
+            <h1>Sharpen your thinking.</h1>
+            <p class="hero-subtitle">Explore ideas, connect concepts, and build your knowledge through thoughtful articles and insights.</p>
+            
+            <div class="search-section">
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search articles, topics or ideas...">
+                </div>
+            </div>
+            
+            <div class="category-section">
+                <div class="category-buttons">
+                    <button class="category-btn active">All Posts</button>
+                    <button class="category-btn">Productivity</button>
+                    <button class="category-btn">Technology</button>
+                    <button class="category-btn">Philosophy</button>
+                    <button class="category-btn">Learning</button>
+                    <button class="category-btn">Creativity</button>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- Category Buttons -->
-        <div class="category-buttons">
-            <button class="category-btn active" data-category="all">All</button>
-            <button class="category-btn" data-category="productivity">Productivity</button>
-            <button class="category-btn" data-category="technology">Technology</button>
-            <button class="category-btn" data-category="philosophy">Philosophy</button>
-            <button class="category-btn" data-category="learning">Learning</button>
-            <button class="category-btn" data-category="creativity">Creativity</button>
+    <!-- Latest Articles Section -->
+    <section class="content-section" id="articles">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Latest Articles</h2>
+            </div>
+            
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">Aug 24, 2023</span>
+                        <span class="blog-category">Readability</span>
+                    </div>
+                    <h3 class="blog-title">The Art of Connected Thinking</h3>
+                    <p class="blog-excerpt">Discover how linking ideas and concepts can revolutionize your problem-solving abilities and create breakthrough insights in your work and life.</p>
+                    <a href="#" class="read-more">Read more →</a>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">Aug 22, 2023</span>
+                        <span class="blog-category">Technology</span>
+                    </div>
+                    <h3 class="blog-title">Building Digital Gardens</h3>
+                    <p class="blog-excerpt">Learn how to cultivate your personal knowledge base and create a thriving ecosystem of interconnected ideas using modern digital tools.</p>
+                    <a href="#" class="read-more">Read more →</a>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">Aug 20, 2023</span>
+                        <span class="blog-category">Philosophy</span>
+                    </div>
+                    <h3 class="blog-title">The Network of Knowledge</h3>
+                    <p class="blog-excerpt">Exploring how human understanding emerges from the complex web of relationships between ideas, experiences, and insights.</p>
+                    <a href="#" class="read-more">Read more →</a>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">Aug 18, 2023</span>
+                        <span class="blog-category">Learning</span>
+                    </div>
+                    <h3 class="blog-title">Active Note-Taking Systems</h3>
+                    <p class="blog-excerpt">Transform your note-taking from passive recording to active thinking with proven methods that enhance retention and understanding.</p>
+                    <a href="#" class="read-more">Read more →</a>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">Aug 16, 2023</span>
+                        <span class="blog-category">Creativity</span>
+                    </div>
+                    <h3 class="blog-title">Serendipitous Connections</h3>
+                    <p class="blog-excerpt">How embracing randomness and unexpected links between ideas can lead to creative breakthroughs and innovative solutions.</p>
+                    <a href="#" class="read-more">Read more →</a>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">Aug 14, 2023</span>
+                        <span class="blog-category">Productivity</span>
+                    </div>
+                    <h3 class="blog-title">Systems for Sustained Focus</h3>
+                    <p class="blog-excerpt">Develop robust frameworks for maintaining deep concentration in an increasingly distracted world through intentional design.</p>
+                    <a href="#" class="read-more">Read more →</a>
+                </article>
+            </div>
         </div>
+    </section>
 
-        <!-- Blog Grid -->
-        <h2 class="section-title">Latest Articles</h2>
-        <div class="blog-grid" id="blogGrid">
-            <article class="blog-card" data-category="productivity">
-                <div class="blog-meta">
-                    <span class="blog-date">Aug 24, 2023</span>
-                    <span class="blog-tag">Readability</span>
+    <!-- Newsletter Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="newsletter-section">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Join the Knowledge Network</h2>
+                    <p class="newsletter-description">Get weekly highly insights on thinking, productivity, and building your personal knowledge system.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
                 </div>
-                <h3 class="blog-title">The Art of Connected Thinking</h3>
-                <p class="blog-excerpt">Discover how linking ideas and concepts can revolutionize your problem-solving abilities and create breakthrough insights in your work and life.</p>
-                <a href="#" class="read-more">Read more →</a>
-            </article>
-
-            <article class="blog-card" data-category="technology">
-                <div class="blog-meta">
-                    <span class="blog-date">Aug 22, 2023</span>
-                    <span class="blog-tag">Technology</span>
-                </div>
-                <h3 class="blog-title">Building Digital Gardens</h3>
-                <p class="blog-excerpt">Learn how to cultivate your personal knowledge base and create a thriving ecosystem of interconnected ideas using modern digital tools.</p>
-                <a href="#" class="read-more">Read more →</a>
-            </article>
-
-            <article class="blog-card" data-category="philosophy">
-                <div class="blog-meta">
-                    <span class="blog-date">Aug 20, 2023</span>
-                    <span class="blog-tag">Philosophy</span>
-                </div>
-                <h3 class="blog-title">The Network of Knowledge</h3>
-                <p class="blog-excerpt">Exploring how human understanding emerges from the complex web of relationships between ideas, experiences, and insights.</p>
-                <a href="#" class="read-more">Read more →</a>
-            </article>
-
-            <article class="blog-card" data-category="learning">
-                <div class="blog-meta">
-                    <span class="blog-date">Aug 18, 2023</span>
-                    <span class="blog-tag">Learning</span>
-                </div>
-                <h3 class="blog-title">Active Note-Taking Systems</h3>
-                <p class="blog-excerpt">Transform your note-taking from passive recording to active thinking with proven methods that enhance retention and understanding.</p>
-                <a href="#" class="read-more">Read more →</a>
-            </article>
-
-            <article class="blog-card" data-category="creativity">
-                <div class="blog-meta">
-                    <span class="blog-date">Aug 16, 2023</span>
-                    <span class="blog-tag">Creativity</span>
-                </div>
-                <h3 class="blog-title">Serendipitous Connections</h3>
-                <p class="blog-excerpt">How embracing randomness and unexpected links between ideas can lead to creative breakthroughs and innovative solutions.</p>
-                <a href="#" class="read-more">Read more →</a>
-            </article>
-
-            <article class="blog-card" data-category="productivity">
-                <div class="blog-meta">
-                    <span class="blog-date">Aug 14, 2023</span>
-                    <span class="blog-tag">Productivity</span>
-                </div>
-                <h3 class="blog-title">Systems for Sustained Focus</h3>
-                <p class="blog-excerpt">Develop robust frameworks for maintaining deep concentration in an increasingly distracted world through intentional design.</p>
-                <a href="#" class="read-more">Read more →</a>
-            </article>
+            </div>
         </div>
-
-        <!-- Newsletter -->
-        <div class="newsletter">
-            <h3>Join the Knowledge Network</h3>
-            <p>Get weekly insights on critical thinking, productivity, and building your personal knowledge system.</p>
-            <form class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="Enter your email">
-                <button type="submit" class="newsletter-btn">Subscribe</button>
-            </form>
-        </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="#articles">Articles</a>
+                <a href="#categories">Categories</a>
                 <a href="pages/about.html">About</a>
-
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Contact</a>
             </div>
             <p style="color: var(--color-text-secondary);">&copy; 2025 Canasa Technology. All rights reserved.</p>
         </div>
@@ -562,72 +725,49 @@
     <!-- Mobile Optimized JavaScript -->
     <script src="assets/js/mobile-optimized.js"></script>
     <script>
-        // Category filtering
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        const blogCards = document.querySelectorAll('.blog-card');
-
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
+        // Mobile menu functionality
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileToggle && navLinks) {
+            mobileToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
                 
-                // Update active button
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                const selectedCategory = button.dataset.category;
-                
-                // Filter cards
-                blogCards.forEach(card => {
-                    if (selectedCategory === 'all' || card.dataset.category === selectedCategory) {
-                        card.style.display = 'block';
-                        card.style.animation = 'fadeInUp 0.6s ease-out';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+                // Animate hamburger to X
+                const spans = this.querySelectorAll('span');
+                spans.forEach(span => span.classList.toggle('active'));
             });
-        });
-
-        // Search functionality
-        const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
             
-            blogCards.forEach(card => {
-                const title = card.querySelector('.blog-title').textContent.toLowerCase();
-                const excerpt = card.querySelector('.blog-excerpt').textContent.toLowerCase();
-                const tag = card.querySelector('.blog-tag').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || excerpt.includes(searchTerm) || tag.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.nav') && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    const spans = mobileToggle.querySelectorAll('span');
+                    spans.forEach(span => span.classList.remove('active'));
                 }
+            });
+        }
+
+        // Category button functionality
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
             });
         });
 
-        // Newsletter form
-        const newsletterForm = document.querySelector('.newsletter-form');
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = e.target.querySelector('.newsletter-input').value;
-            if (email) {
-                alert('Thank you for subscribing! Welcome to the Knowledge Network.');
-                e.target.reset();
-            }
-        });
-
-        // Smooth scrolling for nav links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // Improve touch interactions
+        const touchTargets = document.querySelectorAll('.nav-link, .card, .blog-card');
+        touchTargets.forEach(target => {
+            target.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            
+            target.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
             });
         });
     </script>
