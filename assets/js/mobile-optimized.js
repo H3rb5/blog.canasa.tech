@@ -17,6 +17,7 @@ class MobileOptimizer {
         this.setupPerformanceOptimizations();
         this.setupAccessibility();
         this.setupResponsiveHandlers();
+        this.setupCategoryButtons();
     }
     
     // Mobile Menu Functionality
@@ -247,6 +248,18 @@ class MobileOptimizer {
         }
     }
     
+    setupCategoryButtons() {
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+            });
+        });
+    }
+
     // Utility Methods
     updateAriaLabels() {
         if (this.mobileMenuToggle) {
