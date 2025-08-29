@@ -1,0 +1,66 @@
+{
+  "color": {
+    "bg": {
+      "primary": { "value": "#0a0e13" },
+      "secondary": { "value": "#152028" },
+      "tertiary": { "value": "#1e2a35" }
+    },
+    "text": {
+      "primary": { "value": "#e8edf4" },
+      "secondary": { "value": "#9ca3af" },
+      "inverse": { "value": "#ffffff" },
+      "muted": { "value": "#6b7280" }
+    },
+    "brand": {
+      "accent": { "value": "#00abe4" },
+      "accent-hover": { "value": "#0095c7" }
+    },
+    "semantic": {
+      "success": { "value": "#10b981" },
+      "warning": { "value": "#f59e0b" },
+      "error": { "value": "#ef4444" }
+    }
+  },
+  "spacing": {
+    "xs": { "value": "0.25rem" },
+    "sm": { "value": "0.5rem" },
+    "md": { "value": "1rem" },
+    "lg": { "value": "1.5rem" },
+    "xl": { "value": "2rem" },
+    "2xl": { "value": "3rem" },
+    "3xl": { "value": "4rem" }
+  },
+  "radius": {
+    "sm": { "value": "4px" },
+    "md": { "value": "8px" },
+    "lg": { "value": "12px" },
+    "xl": { "value": "16px" }
+  },
+  "typography": {
+    "family": {
+      "body": { "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" }
+    },
+    "size": {
+      "sm": { "value": "0.875rem" },
+      "base": { "value": "1rem" },
+      "lg": { "value": "1.125rem" },
+      "xl": { "value": "1.25rem" },
+      "2xl": { "value": "1.5rem" },
+      "3xl": { "value": "2rem" },
+      "4xl": { "value": "2.5rem" },
+      "5xl": { "value": "3.5rem" }
+    },
+    "weight": {
+      "normal": { "value": "400" },
+      "medium": { "value": "500" },
+      "semibold": { "value": "600" },
+      "bold": { "value": "700" },
+      "extrabold": { "value": "800" }
+    }
+  },
+  "shadow": {
+    "sm": { "value": "0 2px 4px rgba(0, 171, 228, 0.1)" },
+    "md": { "value": "0 4px 8px rgba(0, 171, 228, 0.15)" },
+    "lg": { "value": "0 10px 25px rgba(0, 171, 228, 0.3)" }
+  }
+}

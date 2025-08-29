@@ -1,0 +1,18 @@
+{
+  "name": "knowledge-canvas",
+  "version": "1.0.0",
+  "description": "Knowledge Canvas - A design system powered website",
+  "main": "index.html",
+  "scripts": {
+    "build-tokens": "style-dictionary build --config config.json",
+    "watch-tokens": "style-dictionary build --config config.json --watch",
+    "dev": "npm run build-tokens && echo 'Design tokens built successfully!'",
+    "find-colors": "findstr /r /s \"#[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]\" *.html assets\\css\\*.css"
+  },
+  "keywords": ["design-system", "tokens", "css-variables"],
+  "author": "Canasa Technology",
+  "license": "MIT",
+  "devDependencies": {
+    "style-dictionary": "^3.8.0"
+  }
+}
